@@ -7,6 +7,12 @@ Write a stl file from slices of vertices and faces.
 Each face in the `faces` slice defines on triangle by referencing 3 vertices by there indices.
 The vertices of a triangle should be ordered counterclockwise from the outer view
 ```go
+import (
+	"bufio"
+	"os"
+	"github.com/duswie/meshwriter"
+)
+
 //defining a simple tetraeder geometry
 vertices := [][3]float64{{0, 0, 0}, {0, 3, 0}, {3, 0, 0}, {1.5, 1.5, 3}}
 faces := [][3]uint32{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}}
@@ -18,7 +24,7 @@ file, _ := os.Create(os.TempDir() + "stl_output_example.stl")
 file_buf := bufio.NewWriter(file)
 
 //write the binary stl
-WriteBinaryStl(file_buf, vertices, faces)
+meshwriter.WriteBinaryStl(file_buf, vertices, faces)
 
 //flush buffer and close file
 file_buf.Flush()
