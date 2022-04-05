@@ -7,22 +7,22 @@ import (
 	"testing"
 )
 
-const testfile = "meshwriter_stlout_testfile.stl"
+const testfile = "meshwriter_stlout_testfile"
 
-func getTestFile() *os.File {
-	filepath := os.TempDir() + testfile
+func getTestFile(filetype string) *os.File {
+	filepath := os.TempDir() + testfile + "." + filetype
 	w, _ := os.Create(filepath)
 	return w
 }
 
-func delTestFile() {
-	filepath := os.TempDir() + testfile
+func delTestFile(filetype string) {
+	filepath := os.TempDir() + testfile + "." + filetype
 	os.Remove(filepath)
 }
 
 func TestWriteStlHeader(t *testing.T) {
 
-	w := getTestFile()
+	w := getTestFile("stl")
 	writeStlHeader(w, 777777, "testtext")
 
 	file := make([]byte, 100)
@@ -47,7 +47,7 @@ func TestWriteStlHeader(t *testing.T) {
 	}
 
 	w.Close()
-	delTestFile()
+	delTestFile("stl")
 
 }
 
@@ -56,7 +56,7 @@ func TestWriteStlFace(t *testing.T) {
 	vertices := [][3]float64{{1, 1, 1}, {1, 2, 1}, {2, 1, 1}}
 	faces := [][3]uint32{{0, 1, 2}}
 
-	w := getTestFile()
+	w := getTestFile("stl")
 
 	writeStlFace(0, w, vertices, faces)
 
