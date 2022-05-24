@@ -54,7 +54,7 @@ func TestWriteStlHeader(t *testing.T) {
 func TestWriteStlFace(t *testing.T) {
 
 	vertices := [][3]float64{{1, 1, 1}, {1, 2, 1}, {2, 1, 1}}
-	faces := [][3]uint32{{0, 1, 2}}
+	faces := [][3]int{{0, 1, 2}}
 
 	w := getTestFile("stl")
 
@@ -81,7 +81,7 @@ func ExampleWriteBinaryStl() {
 
 	//defining a simple tetraeder geometry
 	vertices := [][3]float64{{0, 0, 0}, {0, 3, 0}, {3, 0, 0}, {1.5, 1.5, 3}}
-	faces := [][3]uint32{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}}
+	faces := [][3]int{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}}
 
 	//creating a new file at temp dir
 	file, _ := os.Create(os.TempDir() + "stl_output_example.stl")

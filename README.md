@@ -16,7 +16,7 @@ import (
 
 //defining a simple tetraeder geometry
 vertices := [][3]float64{{0, 0, 0}, {0, 3, 0}, {3, 0, 0}, {1.5, 1.5, 3}}
-faces := [][3]uint32{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}}
+faces := [][3]int{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}}
 
 //creating a new file at temp dir
 file, _ := os.Create(os.TempDir() + "stl_output_example.stl")
@@ -41,7 +41,7 @@ The vertices of a triangle should be ordered counterclockwise from the outer vie
 ```go
 //defining 2 simple tetraeder geometrys in different groups
 vertices := [][3]float64{{0, 0, 0}, {0, 3, 0}, {3, 0, 0}, {1.5, 1.5, 3}, {5, 5, 0}, {5, 8, 0}, {8, 5, 0}, {6.5, 6.5, 3}}
-faces := [][][3]uint32{
+faces := [][][3]int{
 	{{0, 2, 1}, {0, 1, 3}, {1, 2, 3}, {0, 3, 2}},
 	{{4, 6, 5}, {4, 5, 7}, {5, 6, 7}, {4, 7, 6}},
 }

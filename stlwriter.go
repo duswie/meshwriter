@@ -43,7 +43,7 @@ func encodeUint16(buf []byte, offset *int, u uint16) {
 	*offset += 2
 }
 
-func writeStlFace(i uint32, w io.Writer, vertices [][3]float64, faces [][3]uint32) {
+func writeStlFace(i int, w io.Writer, vertices [][3]float64, faces [][3]int) {
 
 	var points [3][3]float32
 	for n := 0; n < 3; n++ {
@@ -68,11 +68,11 @@ func encodeStlFace(points [3][3]float32) [50]byte {
 //Vertices is a slice with all 3D points (X,Y,Z)
 //Each face in the faces slice defines on triangle by referencing 3 vertices
 //the three vertices of a triangle should be ordered counterclockwise from the outter view
-func WriteBinaryStl(writer io.Writer, vertices [][3]float64, faces [][3]uint32) error {
+func WriteBinaryStl(writer io.Writer, vertices [][3]float64, faces [][3]int) error {
 
 	writeStlHeader(writer, uint32(len(faces)))
 
-	for i := uint32(0); i < uint32(len(faces)); i++ {
+	for i := 0; i < len(faces); i++ {
 		writeStlFace(i, writer, vertices, faces)
 	}
 

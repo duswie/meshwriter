@@ -10,7 +10,7 @@ func writeObjVertex(w io.Writer, v [3]float64) {
 	w.Write([]byte(line))
 }
 
-func writeObjFace(w io.Writer, f [3]uint32) {
+func writeObjFace(w io.Writer, f [3]int) {
 	line := fmt.Sprintf("f %d %d %d\n", f[0]+1, f[1]+1, f[2]+1)
 	w.Write([]byte(line))
 }
@@ -19,7 +19,7 @@ func writeObjFace(w io.Writer, f [3]uint32) {
 //Vertices is a slice with all 3D points (X,Y,Z)
 //Each face in the faces slice defines on triangle by referencing 3 vertices
 //the three vertices of a triangle should be ordered counterclockwise from the outter view
-func WriteObj(writer io.Writer, vertices [][3]float64, faces [][][3]uint32) error {
+func WriteObj(writer io.Writer, vertices [][3]float64, faces [][][3]int) error {
 
 	head := "#Generated with duswie/meshwriter\n"
 	writer.Write([]byte(head))
